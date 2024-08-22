@@ -8,7 +8,8 @@ import {
 } from "@mui/material";
 import { WeatherRecord } from "../../nonview/core";
 import WeatherRecordView from "../molecules/WeatherRecordView";
-import DayRainfallChart from "../molecules/DayRainfallChart";
+import DayRainChart from "../molecules/DayRainChart";
+import { DayTempChart } from "../molecules";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class HomePage extends Component {
     const dateList = await WeatherRecord.getDateList();
     const date = dateList[0];
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    this.setState({date, weatherRecordList });
+    this.setState({ date, weatherRecordList });
   }
 
   renderWithData() {
@@ -35,8 +36,10 @@ export default class HomePage extends Component {
     }
     return (
       <Box>
-         <Typography variant="h3">{date}</Typography>
-         <DayRainfallChart date={date} weatherRecordList={weatherRecordList} />
+        <Typography variant="h3">{date}</Typography>
+
+        <DayTempChart date={date} weatherRecordList={weatherRecordList} />
+        <DayRainChart date={date} weatherRecordList={weatherRecordList} />
         {weatherRecordList.map(function (weatherRecord, i) {
           return <WeatherRecordView key={i} weatherRecord={weatherRecord} />;
         })}
