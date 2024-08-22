@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { WeatherRecord } from "../../nonview/core";
 import WeatherRecordView from "../molecules/WeatherRecordView";
+import DayRainfallChart from "../molecules/DayRainfallChart";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class HomePage extends Component {
     return (
       <Box>
          <Typography variant="h3">{date}</Typography>
+         <DayRainfallChart date={date} weatherRecordList={weatherRecordList} />
         {weatherRecordList.map(function (weatherRecord, i) {
           return <WeatherRecordView key={i} weatherRecord={weatherRecord} />;
         })}

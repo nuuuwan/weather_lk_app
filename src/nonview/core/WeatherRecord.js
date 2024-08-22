@@ -28,9 +28,9 @@ export default class WeatherRecord {
     return rawData["weather_list"].map(function (d) {
       return new WeatherRecord(
         d["place"],
-        [d["lat"], d["lng"]],
+        {lat: d["lat"], lng: d["lng"]},
         date,
-        [d["min_temp"], d["max_temp"]],
+        {min: d["min_temp"], max: d["max_temp"]},
         d["rain"]
       );
     });
