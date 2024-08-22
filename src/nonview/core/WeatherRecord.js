@@ -30,7 +30,7 @@ export default class WeatherRecord {
   }
 
   get tempRangeFormatted() {
-    const format = x => x.toFixed(1);
+    const format = (x) => x.toFixed(1);
     return `${format(this.tempMin)} - ${format(this.tempMax)}`;
   }
 

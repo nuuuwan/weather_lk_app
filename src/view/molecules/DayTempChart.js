@@ -16,8 +16,8 @@ export default function DayTempChart({ date, weatherRecordList }) {
     });
   const n = dataset.length;
 
-  const min = Math.floor(MathX.min(dataset.map(x => x.tempMin)))  ;
-  const max = Math.ceil(MathX.max(dataset.map(x => x.tempMax))) ;
+  const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)));
+  const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)));
 
   return (
     <Box>
@@ -29,7 +29,7 @@ export default function DayTempChart({ date, weatherRecordList }) {
         ]}
         height={n * 24}
         yAxis={[{ dataKey: "place", scaleType: "band" }]}
-        xAxis={[{ label: "Temperature (°C)", min, max}]}
+        xAxis={[{ label: "Temperature (°C)", min, max }]}
         barLabel={(item) => {
           if (item.seriesId === "auto-generated-id-1") {
             const datum = dataset[item.dataIndex];
@@ -40,7 +40,6 @@ export default function DayTempChart({ date, weatherRecordList }) {
         grid={{ vertical: true }}
         layout="horizontal"
         margin={{ left: 120 }}
-      
       />
     </Box>
   );
