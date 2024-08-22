@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {HomePage} from "./view/pages";
+import { HomePage } from "./view/pages";
 import "./App.css";
-
-
 
 const THEME = createTheme({
   palette: {
