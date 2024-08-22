@@ -1,7 +1,7 @@
 import { Slider, Typography, Box } from "@mui/material";
 import React from "react";
 
-export default function DateSlider({ dateList, currentDate, setDate }) {
+export default function CustomDatePicker({ dateList, currentDate, setDate }) {
   const valueInit = dateList.indexOf(currentDate);
   const [value, setValue] = React.useState(valueInit);
   return (

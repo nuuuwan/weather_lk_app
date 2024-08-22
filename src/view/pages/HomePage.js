@@ -3,7 +3,7 @@ import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { WeatherRecord } from "../../nonview/core";
 
 import DayRainChart from "../molecules/DayRainChart";
-import { DateSlider, DayTempChart } from "../molecules";
+import { CustomDatePicker, DayTempChart } from "../molecules";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Typography variant="h3">{date}</Typography>
-        <DateSlider
+        <CustomDatePicker
           dateList={this.state.dateList}
           currentDate={date}
           setDate={this.setDate.bind(this)}
