@@ -1,35 +1,28 @@
 import { Box } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 
-
-function isImportant(weatherRecord) { 
-  return (  weatherRecord.tempMin !== null &&
+function isImportant(weatherRecord) {
+  return (
+    weatherRecord.tempMin !== null &&
     weatherRecord.tempMax !== null &&
-    weatherRecord.rain !== null)
+    weatherRecord.rain !== null
+  );
 }
 
 function getDataset(weatherRecordList, showImportantOnly) {
-
-if (showImportantOnly) {
-  return weatherRecordList
-  .filter(isImportant);
+  if (showImportantOnly) {
+    return weatherRecordList.filter(isImportant);
   }
 
-
- return weatherRecordList
- .filter(x => !isImportant(x))
-;
+  return weatherRecordList.filter((x) => !isImportant(x));
 }
 
-export default function DayRainChart({  weatherRecordList, showImportantOnly }) {
-  
-  const dataset = getDataset(weatherRecordList, showImportantOnly).sort(function (a, b) {
-    return b.rain - a.rain;
-  });
-  
-
-    
-
+export default function DayRainChart({ weatherRecordList, showImportantOnly }) {
+  const dataset = getDataset(weatherRecordList, showImportantOnly).sort(
+    function (a, b) {
+      return b.rain - a.rain;
+    }
+  );
 
   const n = dataset.length;
   return (
