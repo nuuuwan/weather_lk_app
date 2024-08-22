@@ -3,23 +3,30 @@ import {
   Box,
   CircularProgress,
 
+  Grid,
+
   Stack,
   Typography,
 } from "@mui/material";
 import { WeatherRecord } from "../../nonview/core";
-import WeatherRecordView from "../molecules/WeatherRecordView";
+
 import DayRainChart from "../molecules/DayRainChart";
-import { DayTempChart } from "../molecules";
+import { DateSlider, DayTempChart } from "../molecules";
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: undefined, weatherRecordList: undefined };
+    this.state = { dateList: undefined, date: undefined, weatherRecordList: undefined };
   }
 
   async componentDidMount() {
     const dateList = await WeatherRecord.getDateList();
-    const date = dateList[0];
+    const date = dateList[dateList.length - 1];
+    const weatherRecordList = await WeatherRecord.listForDate(date);
+    this.setState({ dateList, date, weatherRecordList });
+  }
+
+  async setDate(date) {
     const weatherRecordList = await WeatherRecord.listForDate(date);
     this.setState({ date, weatherRecordList });
   }
@@ -37,12 +44,22 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Typography variant="h3">{date}</Typography>
+        <DateSlider dateList={this.state.dateList} currentDate={date} setDate={this.setDate.bind(this)} />
 
-        <DayTempChart date={date} weatherRecordList={weatherRecordList} />
-        <DayRainChart date={date} weatherRecordList={weatherRecordList} />
-        {weatherRecordList.map(function (weatherRecord, i) {
-          return <WeatherRecordView key={i} weatherRecord={weatherRecord} />;
-        })}
+        <Grid container> 
+      <Grid item xs={12} md={6} >
+        <DayTempChart weatherRecordList={weatherRecordList} />
+        </Grid>
+        <Grid item xs={12} md={6} >
+        <DayRainChart  weatherRecordList={weatherRecordList} showImportantOnly={true} />
+        
+        </Grid>
+        
+        <Grid item xs={12} md={6} >
+        <DayRainChart  weatherRecordList={weatherRecordList} showImportantOnly={false}/>
+        
+        </Grid></Grid>
+
       </Box>
     );
   }

@@ -37,7 +37,7 @@ export default class WeatherRecord {
   // Loaders
   static async getDateList() {
     const dateList = await WWW.json(WeatherRecord.URL_BASE + "/date_list.json");
-    return dateList.sort().reverse();
+    return dateList.sort();
   }
 
   static async listForDate(date) {
