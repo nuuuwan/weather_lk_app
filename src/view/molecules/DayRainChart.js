@@ -7,7 +7,7 @@ export default function DayRainChart({ date, weatherRecordList }) {
       return weatherRecord.rain !== null;
     })
     .sort(function (a, b) {
-      return b.latLng.lat - a.latLng.lat;
+      return b.rain - a.rain;
     });
   const n = dataset.length;
   return (
@@ -21,7 +21,7 @@ export default function DayRainChart({ date, weatherRecordList }) {
           if (item.value < 12.5) {
             return "";
           }
-          return item.value + "mm";
+          return item.value;
         }}
         layout="horizontal"
         height={24 * n}

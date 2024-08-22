@@ -23,4 +23,12 @@ export default class MathX {
     const span = max - min;
     return [...Array(span).keys()].map((x) => x + min);
   }
+
+  static min(numList) {
+    return Math.min(...numList);
+  }
+
+  static max(numList) {
+    return Math.max(...numList);
+  }
 }

@@ -21,8 +21,17 @@ export default class WeatherRecord {
     return this.tempMinMax.max;
   }
 
+  get tempMid() {
+    return (this.tempMin + this.tempMax) / 2;
+  }
+
   get tempSpan() {
     return this.tempMax - this.tempMin;
+  }
+
+  get tempRangeFormatted() {
+    const format = x => x.toFixed(1);
+    return `${format(this.tempMin)} - ${format(this.tempMax)}`;
   }
 
   // Loaders
