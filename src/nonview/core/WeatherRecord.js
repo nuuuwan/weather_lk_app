@@ -1,6 +1,9 @@
 import { WWW } from "../../nonview/base";
 
 export default class WeatherRecord {
+  static URL_BASE =
+  "https://raw.githubusercontent.com/nuuuwan/weather_lk/data";
+
   constructor(place, latLng, date, tempMinMax, rain) {
     this.place = place;
     this.latLng = latLng;
@@ -9,10 +12,16 @@ export default class WeatherRecord {
     this.rain = rain;
   }
 
+
+  // Loaders
+  static async getDateList() {
+    const dateList =  await WWW.json(WeatherRecord.URL_BASE + '/date_list.json');
+    return dateList.sort().reverse();
+  }
+
   static async listForDate(date) {
-    const URL_BASE =
-      "https://raw.githubusercontent.com/nuuuwan/weather_lk/data/json_parsed/";
-    const url = URL_BASE + `${date}.json`;
+
+    const url = WeatherRecord.URL_BASE + `/json_parsed/${date}.json`;
 
     const rawData = await WWW.json(url);
 
