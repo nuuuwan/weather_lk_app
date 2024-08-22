@@ -20,14 +20,14 @@ export default function DayTempChart({ date, weatherRecordList }) {
       <BarChart
         dataset={dataset}
         series={[
-          {  dataKey: "tempMin", stack: "tempMin", color: "white" },
-          {  dataKey: "tempSpan", stack: "tempMin", color: "red" },
+          { dataKey: "tempMin", stack: "tempMin", color: "white" },
+          { dataKey: "tempSpan", stack: "tempMin", color: "red" },
         ]}
         height={n * 24}
         yAxis={[{ dataKey: "place", scaleType: "band" }]}
         xAxis={[{ label: "Temperature (C)" }]}
         barLabel={(item, context) => {
-          if (item.seriesId === 'auto-generated-id-1') {
+          if (item.seriesId === "auto-generated-id-1") {
             const datum = dataset[item.dataIndex];
             return `${datum.tempMin}-${datum.tempMax}°C`;
           }
