@@ -50,7 +50,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <Box sx={{m:2, p:2}}>
-        <Typography variant="h6">Weather in Sri Lanka</Typography>
+        <Typography variant="h6">Weather</Typography>
         {this.renderWithData()}
       </Box>
     );

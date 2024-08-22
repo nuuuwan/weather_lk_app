@@ -18,7 +18,7 @@ export default function DayRainChart({ date, weatherRecordList }) {
         yAxis={[{ dataKey: "place", scaleType: "band" }]}
         xAxis={[{ label: "Rainfall (mm)" }]}
         barLabel={(item) => {
-          if (item.value < 12.5) {
+          if (item.value < 5) {
             return "";
           }
           return item.value;
