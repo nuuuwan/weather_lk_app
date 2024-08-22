@@ -2,7 +2,7 @@ import { Component } from "react";
 import {
   Box,
   CircularProgress,
-  Container,
+
   Stack,
   Typography,
 } from "@mui/material";
@@ -49,10 +49,10 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <Container>
+      <Box sx={{m:2, p:2}}>
         <Typography variant="h6">Weather in Sri Lanka</Typography>
         {this.renderWithData()}
-      </Container>
+      </Box>
     );
   }
 }
