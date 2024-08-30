@@ -68,14 +68,15 @@ export default class HomePage extends Component {
   }
 
   render() {
-
     const refresh = function () {
       localStorage.clear();
       window.location.reload();
-    }
+    };
     return (
       <Box sx={{ m: 2, p: 2 }}>
-        <Typography variant="h6" onClick={refresh} sx={{cursor: "pointer"}}>Weather</Typography>
+        <Typography variant="h6" onClick={refresh} sx={{ cursor: "pointer" }}>
+          Weather
+        </Typography>
         {this.renderWithData()}
       </Box>
     );

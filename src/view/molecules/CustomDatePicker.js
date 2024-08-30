@@ -15,7 +15,6 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
         max={dateList.length - 1}
         step={1}
       />
-
     </Box>
   );
 }
