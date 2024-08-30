@@ -39,7 +39,6 @@ export default class HomePage extends Component {
     }
     return (
       <Box>
-        <Typography variant="h3">{date}</Typography>
         <CustomDatePicker
           dateList={this.state.dateList}
           currentDate={date}

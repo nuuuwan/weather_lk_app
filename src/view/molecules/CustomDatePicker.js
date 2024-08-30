@@ -6,6 +6,7 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
   const [value, setValue] = React.useState(valueInit);
   return (
     <Box>
+      <Typography variant="h4">{dateList[value]}</Typography>
       <Slider
         value={value}
         onChange={(event, value) => setValue(value)}
@@ -14,9 +15,7 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
         max={dateList.length - 1}
         step={1}
       />
-      {value !== valueInit ? (
-        <Typography variant="caption">{dateList[value]}</Typography>
-      ) : null}
+
     </Box>
   );
 }
