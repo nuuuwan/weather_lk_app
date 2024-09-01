@@ -8,10 +8,14 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
   const date = new Date(dateList[value]);
   return (
     <Box>
-      <Typography variant="h4">{date.toLocaleDateString(
-        undefined,
-        { year: "numeric", month: "short", day: "numeric" , weekday: "short", }
-      )}</Typography>
+      <Typography variant="h4">
+        {date.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          weekday: "short",
+        })}
+      </Typography>
       <Slider
         value={value}
         onChange={(event, value) => setValue(value)}

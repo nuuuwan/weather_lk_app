@@ -1,32 +1,28 @@
 import { Box, Typography } from "@mui/material";
-import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart } from "@mui/x-charts/BarChart";
 import { MathX } from "../../nonview/base";
-export default function LocationView({location, locationRecord}) {
-    const n = locationRecord.length;
-    const firstRecord = locationRecord[0];
-    const lastRecord = locationRecord[n - 1];
-    const blurb = `${n} Records (${firstRecord.date} to ${lastRecord.date})`;
+export default function LocationView({ location, locationRecord }) {
+  const n = locationRecord.length;
+  const firstRecord = locationRecord[0];
+  const lastRecord = locationRecord[n - 1];
+  const blurb = `${n} Records (${firstRecord.date} to ${lastRecord.date})`;
 
-    const dataset = locationRecord.filter(
-        function(d) {
-            return (
-                d.tempMin !== null &&
-                d.tempMin > 0 
-            );
-        }
-    ).slice(-90);
+  const dataset = locationRecord
+    .filter(function (d) {
+      return d.tempMin !== null && d.tempMin > 0;
+    })
+    .slice(-90);
 
-    const Q = 5;
-    const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
-    const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)) / Q) * Q;
+  const Q = 5;
+  const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
+  const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)) / Q) * Q;
 
+  return (
+    <Box>
+      <Typography variant="h4">{location}</Typography>
+      <Typography variant="caption">{blurb}</Typography>
 
-    return (
-        <Box>
-            <Typography variant="h4">{location}</Typography>
-            <Typography variant="caption">{blurb}</Typography>
-
-            <BarChart
+      <BarChart
         dataset={dataset}
         series={[
           { dataKey: "tempMin", stack: "tempMin", color: "white" },
@@ -42,18 +38,14 @@ export default function LocationView({location, locationRecord}) {
           }
           return "";
         }}
-        grid={{ vertical: true , horizontal: true}}
+        grid={{ vertical: true, horizontal: true }}
         layout="vertical"
         margin={{ left: 120 }}
-
       />
 
-<BarChart
+      <BarChart
         dataset={dataset}
-        series={[
-          { dataKey: "rain", color: "#0088ff88" },
-
-        ]}
+        series={[{ dataKey: "rain", color: "#0088ff88" }]}
         height={300}
         xAxis={[{ dataKey: "date", scaleType: "band" }]}
         yAxis={[{ label: "Rainfall (mm)" }]}
@@ -64,12 +56,10 @@ export default function LocationView({location, locationRecord}) {
           }
           return "";
         }}
-        grid={{ vertical: true , horizontal: true}}
+        grid={{ vertical: true, horizontal: true }}
         layout="vertical"
         margin={{ left: 120 }}
-
       />
-
-        </Box>
-    );
+    </Box>
+  );
 }

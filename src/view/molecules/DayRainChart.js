@@ -17,17 +17,21 @@ function getDataset(weatherRecordList, showImportantOnly) {
   return weatherRecordList.filter((x) => !isImportant(x));
 }
 
-export default function DayRainChart({ weatherRecordList, showImportantOnly ,setLocation}) {
+export default function DayRainChart({
+  weatherRecordList,
+  showImportantOnly,
+  setLocation,
+}) {
   const dataset = getDataset(weatherRecordList, showImportantOnly).sort(
     function (a, b) {
       return b.rain - a.rain;
     }
   );
 
-  const onAxisClick  = function(e, v) {
-    const {axisValue} = v;
+  const onAxisClick = function (e, v) {
+    const { axisValue } = v;
     setLocation(axisValue);
-  }
+  };
 
   const n = dataset.length;
   return (
@@ -47,7 +51,7 @@ export default function DayRainChart({ weatherRecordList, showImportantOnly ,set
         height={24 * n}
         margin={{ left: 120 }}
         grid={{ vertical: true }}
-        onAxisClick={onAxisClick }
+        onAxisClick={onAxisClick}
       />
     </Box>
   );

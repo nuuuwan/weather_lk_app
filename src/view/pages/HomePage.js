@@ -1,10 +1,9 @@
 import { Component } from "react";
-import { Box, CircularProgress,  Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 
 import { URLContext } from "../../nonview/base";
 import { WeatherRecord, LocationRecord } from "../../nonview/core";
 import { VERSION } from "../../nonview/constants";
-
 
 import { LocationView, CountryView } from "../molecules";
 
@@ -46,11 +45,19 @@ export default class HomePage extends Component {
 
     let locationRecord;
     if (location) {
-      locationRecord = await this.getLocationRecord(weatherRecordList, location);
+      locationRecord = await this.getLocationRecord(
+        weatherRecordList,
+        location
+      );
     }
 
-
-    this.setStateAndContext({ dateList, date, weatherRecordList, location, locationRecord });
+    this.setStateAndContext({
+      dateList,
+      date,
+      weatherRecordList,
+      location,
+      locationRecord,
+    });
   }
 
   async setDate(date) {
@@ -59,15 +66,15 @@ export default class HomePage extends Component {
   }
 
   async setLocation(location) {
-    let {locationRecord, weatherRecordList} = this.state;
+    let { locationRecord, weatherRecordList } = this.state;
 
-      locationRecord = await this.getLocationRecord(weatherRecordList, location);
+    locationRecord = await this.getLocationRecord(weatherRecordList, location);
 
     this.setStateAndContext({ location, locationRecord });
   }
 
   renderWithData() {
-    const {location} = this.state;
+    const { location } = this.state;
 
     if (location) {
       return this.renderLocationView();
@@ -75,22 +82,21 @@ export default class HomePage extends Component {
     return this.renderCountryView();
   }
 
-renderLoading() {
-  return (
-    <Stack direction="row" gap={1} alignItems="center">
-      <CircularProgress />
-    </Stack>
-  );
-}
+  renderLoading() {
+    return (
+      <Stack direction="row" gap={1} alignItems="center">
+        <CircularProgress />
+      </Stack>
+    );
+  }
 
   renderLocationView() {
-    const {location, locationRecord} = this.state;
+    const { location, locationRecord } = this.state;
     if (!locationRecord) {
       return this.renderLoading();
     }
-    return <LocationView location={location} locationRecord={locationRecord}/>;
+    return <LocationView location={location} locationRecord={locationRecord} />;
   }
-  
 
   renderCountryView() {
     const { date, weatherRecordList } = this.state;
@@ -98,8 +104,14 @@ renderLoading() {
       return this.renderLoading();
     }
 
-    return <CountryView date={date} {...this.state} setDate={this.setDate.bind(this)} setLocation={this.setLocation.bind(this)} />;
-
+    return (
+      <CountryView
+        date={date}
+        {...this.state}
+        setDate={this.setDate.bind(this)}
+        setLocation={this.setLocation.bind(this)}
+      />
+    );
   }
 
   render() {
