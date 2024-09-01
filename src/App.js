@@ -23,7 +23,7 @@ const THEME = createTheme({
     },
   },
   typography: {
-    fontFamily: "Chau Philomene One",
+    fontFamily: "Cairo",
     fontSize: 14,
   },
 });
