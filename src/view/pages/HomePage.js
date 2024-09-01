@@ -59,15 +59,18 @@ export default class HomePage extends Component {
         />
 
         <Grid container>
-          <Grid item xs={12} md={6}>
-            <DayTempChart weatherRecordList={weatherRecordList} />
-          </Grid>
-          <Grid item xs={12} md={6}>
+
+        <Grid item xs={12} md={6}>
             <DayRainChart
               weatherRecordList={weatherRecordList}
               showImportantOnly={true}
             />
           </Grid>
+
+          <Grid item xs={12} md={6}>
+            <DayTempChart weatherRecordList={weatherRecordList} />
+          </Grid>
+
 
           <Grid item xs={12} md={6}>
             <DayRainChart
