@@ -3,7 +3,7 @@ import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 
 import { URLContext } from "../../nonview/base";
 import { WeatherRecord } from "../../nonview/core";
-import {VERSION} from "../../nonview/constants";
+import { VERSION } from "../../nonview/constants";
 
 import DayRainChart from "../molecules/DayRainChart";
 import { CustomDatePicker, DayTempChart } from "../molecules";
@@ -11,7 +11,7 @@ import { CustomDatePicker, DayTempChart } from "../molecules";
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    const {date} = URLContext.get();
+    const { date } = URLContext.get();
     this.state = {
       dateList: undefined,
       date,
@@ -21,14 +21,14 @@ export default class HomePage extends Component {
 
   setStateAndContext(newState) {
     this.setState(newState);
-    const {date} = Object.assign({}, this.state, newState);
-    URLContext.set({date});
+    const { date } = Object.assign({}, this.state, newState);
+    URLContext.set({ date });
   }
 
   async componentDidMount() {
-    let {date} = this.state;
+    let { date } = this.state;
     const dateList = await WeatherRecord.getDateList();
-    
+
     if (dateList.indexOf(date) === -1) {
       date = dateList[dateList.length - 1];
     }
@@ -47,7 +47,6 @@ export default class HomePage extends Component {
       return (
         <Stack direction="row" gap={1} alignItems="center">
           <CircularProgress />
-
         </Stack>
       );
     }
@@ -87,9 +86,14 @@ export default class HomePage extends Component {
       window.location.reload();
     };
     return (
-      <Box sx={{ m: 2, p: 2} }>
-                  <Typography variant="caption" sx={{cursor: "pointer", opacity: 0.2 }} onClick={refresh}>
-                    v{VERSION.DATETIME_STR}</Typography>
+      <Box sx={{ m: 2, p: 2 }}>
+        <Typography
+          variant="caption"
+          sx={{ cursor: "pointer", opacity: 0.2 }}
+          onClick={refresh}
+        >
+          v{VERSION.DATETIME_STR}
+        </Typography>
         {this.renderWithData()}
       </Box>
     );
