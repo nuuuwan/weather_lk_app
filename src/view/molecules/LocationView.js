@@ -8,7 +8,7 @@ export default function LocationView({ locationRecord }) {
   const N_DISPLAY = 30;
   const dataset = locationRecord
     .filter(function (d) {
-      return d.tempMin !== null && d.tempMin > 0;
+      return d.tempMin !== null && d.tempMax !== null && d.rain !== null && d.tempMin > 0;
     })
     .slice(-N_DISPLAY)
     .reverse();

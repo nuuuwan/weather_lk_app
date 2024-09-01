@@ -2,29 +2,13 @@ import React, { Component } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { HomePage } from "./view/pages";
-import "./App.css";
+import {STYLE} from "./nonview/constants";
 
 const THEME = createTheme({
-  palette: {
-    primary: {
-      main: "#444",
-    },
-    secondary: {
-      main: "#f80",
-    },
-    info: {
-      main: "#084",
-    },
-    warning: {
-      main: "#f80",
-    },
-    error: {
-      main: "#800",
-    },
-  },
+
   typography: {
-    fontFamily: "Cairo",
-    fontSize: 14,
+    fontFamily: STYLE.FONT.FAMILY,
+    fontSize: STYLE.FONT.SIZE,
   },
 });
 

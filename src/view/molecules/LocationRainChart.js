@@ -27,7 +27,7 @@ export default function LocationTempChart({ dataset, height }) {
         }}
         grid={{ vertical: true, horizontal: true }}
         layout="horizontal"
-        margin={{ left: 120 }}
+        margin={{ left: 60 }}
       />
     </Box>
   );
