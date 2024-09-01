@@ -2,10 +2,9 @@ import React, { Component } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { HomePage } from "./view/pages";
-import {STYLE} from "./nonview/constants";
+import { STYLE } from "./nonview/constants";
 
 const THEME = createTheme({
-
   typography: {
     fontFamily: STYLE.FONT.FAMILY,
     fontSize: STYLE.FONT.SIZE,

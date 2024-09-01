@@ -36,7 +36,7 @@ export default class WeatherRecord {
 
   // Normalizers
   static normalizePlace(place) {
-    place = place.replaceAll(" ", "-")
+    place = place.replaceAll(" ", "-");
     return NORMALIZED_PLACE_IDX[place] || place;
   }
 
