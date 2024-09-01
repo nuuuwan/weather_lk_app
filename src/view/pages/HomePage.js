@@ -1,10 +1,12 @@
 import { Component } from "react";
 import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
+
+import { URLContext } from "../../nonview/base";
 import { WeatherRecord } from "../../nonview/core";
+import {VERSION} from "../../nonview/constants";
 
 import DayRainChart from "../molecules/DayRainChart";
 import { CustomDatePicker, DayTempChart } from "../molecules";
-import { URLContext } from "../../nonview/base";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -45,7 +47,7 @@ export default class HomePage extends Component {
       return (
         <Stack direction="row" gap={1} alignItems="center">
           <CircularProgress />
-          <Typography variant="body2">Loading...</Typography>
+          <Typography variant="body2">Loading v{VERSION.DATETIME_STR}...</Typography>
         </Stack>
       );
     }
