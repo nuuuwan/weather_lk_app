@@ -134,7 +134,7 @@ export default class HomePage extends Component {
       window.location.reload();
     };
     return (
-      <Box sx={{ m: 2, p: 2 }}>
+      <Box sx={{ m: 2 }}>
         <Typography
           variant="caption"
           sx={{ cursor: "pointer", opacity: 0.2 }}

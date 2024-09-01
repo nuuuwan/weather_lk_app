@@ -50,7 +50,7 @@ export default function DayTempChart({ weatherRecordList, setLocation }) {
         }}
         grid={{ vertical: true }}
         layout="horizontal"
-        margin={{ left: 120 }}
+        margin={{ left: 80 }}
         onAxisClick={onAxisClick}
         onItemClick={onItemClick}
       />

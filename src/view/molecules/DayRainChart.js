@@ -33,6 +33,12 @@ export default function DayRainChart({
     setLocation(axisValue);
   };
 
+  const onItemClick = function (e, v) {
+    const { dataIndex } = v;
+    setLocation(dataset[dataIndex].place);
+  };
+
+
   const n = dataset.length;
   return (
     <Box>
@@ -49,9 +55,10 @@ export default function DayRainChart({
         }}
         layout="horizontal"
         height={24 * n}
-        margin={{ left: 120 }}
+        margin={{ left: 80 }}
         grid={{ vertical: true }}
         onAxisClick={onAxisClick}
+        onItemClick={onItemClick}
       />
     </Box>
   );

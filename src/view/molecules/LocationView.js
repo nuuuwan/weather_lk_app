@@ -17,7 +17,7 @@ export default function LocationView({
     .filter(function (d) {
       return d.tempMin !== null && d.tempMin > 0;
     })
-    .slice(-90);
+    .slice(-30);
 
   const Q = 5;
   const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
@@ -52,7 +52,7 @@ export default function LocationView({
         }}
         grid={{ vertical: true, horizontal: true }}
         layout="vertical"
-        margin={{ left: 120 }}
+
       />
 
       <BarChart
@@ -70,7 +70,7 @@ export default function LocationView({
         }}
         grid={{ vertical: true, horizontal: true }}
         layout="vertical"
-        margin={{ left: 120 }}
+
       />
     </Box>
   );
