@@ -13,16 +13,18 @@ export default function LocationView({
   const lastRecord = locationRecord[n - 1];
   const blurb = `${n} Records (${firstRecord.date} to ${lastRecord.date})`;
 
+  const N_DISPLAY = 30;
   const dataset = locationRecord
     .filter(function (d) {
       return d.tempMin !== null && d.tempMin > 0;
     })
-    .slice(-30);
+    .slice(-N_DISPLAY).reverse();
 
   const Q = 5;
   const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
   const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)) / Q) * Q;
 
+  const HEIGHT_PER_ITEM = 20;
   return (
     <Box>
       <Box>
@@ -33,42 +35,45 @@ export default function LocationView({
         />
       </Box>
       <Typography variant="caption">{blurb}</Typography>
+      <Typography variant="h5">Last {N_DISPLAY} Days</Typography>
+
 
       <BarChart
+        dataset={dataset}
+        series={[{ dataKey: "rain", color: "#0088ff88" }]}
+        height={N_DISPLAY * HEIGHT_PER_ITEM}
+        yAxis={[{ dataKey: "date", scaleType: "band" }]}
+        xAxis={[{ label: "Rainfall (mm)" }]}
+        barLabel={(item) => {
+          
+            const datum = dataset[item.dataIndex];
+            return datum.rainFormatted;
+          
+        }}
+        grid={{ vertical: true, horizontal: true }}
+        layout="horizontal"
+        margin={{left: 120}}
+      />
+
+
+<BarChart
         dataset={dataset}
         series={[
           { dataKey: "tempMin", stack: "tempMin", color: "white" },
           { dataKey: "tempSpan", stack: "tempMin", color: "red" },
         ]}
-        height={300}
-        xAxis={[{ dataKey: "date", scaleType: "band" }]}
-        yAxis={[{ label: "Temperature (°C)", min, max }]}
+        height={N_DISPLAY * HEIGHT_PER_ITEM}
+        yAxis={[{ dataKey: "date", scaleType: "band" }]}
+        xAxis={[{ label: "Temperature (°C)", min, max }]}
         barLabel={(item) => {
-          if (item.seriesId === "auto-generated-id-1") {
+          
             const datum = dataset[item.dataIndex];
             return datum.tempRangeFormatted;
-          }
-          return "";
+         
         }}
         grid={{ vertical: true, horizontal: true }}
-        layout="vertical"
-      />
-
-      <BarChart
-        dataset={dataset}
-        series={[{ dataKey: "rain", color: "#0088ff88" }]}
-        height={300}
-        xAxis={[{ dataKey: "date", scaleType: "band" }]}
-        yAxis={[{ label: "Rainfall (mm)" }]}
-        barLabel={(item) => {
-          if (item.seriesId === "auto-generated-id-1") {
-            const datum = dataset[item.dataIndex];
-            return datum.tempRangeFormatted;
-          }
-          return "";
-        }}
-        grid={{ vertical: true, horizontal: true }}
-        layout="vertical"
+        layout="horizontal"
+        margin={{left: 120}}
       />
     </Box>
   );

@@ -21,6 +21,19 @@ export default class LocationRecord {
     return this.tempMax - this.tempMin;
   }
 
+  get tempRangeFormatted() {
+    const format = (x) => x.toFixed(1);
+    return `${format(this.tempMin)} - ${format(this.tempMax)}`;
+  }
+
+  get rainFormatted() {
+    if (this.rain < 5) {
+      return "";
+    }
+    return this.rain.toFixed(1) ;
+  }
+
+
   static async listForLocation(location, latLng) {
     const latLngStr = `${latLng.lng.toFixed(2)}E-${latLng.lat.toFixed(2)}N`;
 
