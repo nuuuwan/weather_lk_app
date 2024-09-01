@@ -16,8 +16,9 @@ export default function DayTempChart({ date, weatherRecordList }) {
     });
   const n = dataset.length;
 
-  const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)));
-  const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)));
+  const Q = 5;
+  const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
+  const max = Math.ceil( MathX.max(dataset.map((x) => x.tempMax)) / Q) * Q;
 
   return (
     <Box>
