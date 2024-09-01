@@ -5,9 +5,11 @@ import { URLContext } from "../../nonview/base";
 import { WeatherRecord, LocationRecord } from "../../nonview/core";
 import { VERSION } from "../../nonview/constants";
 
-import { LocationView, CountryView } from "../molecules";
+import { LocationView, CountryView, LocationSelector } from "../molecules";
 
 export default class HomePage extends Component {
+  static LOCATION_ISLANDWIDE = 'Islandwide';
+
   constructor(props) {
     super(props);
     const { date, location } = URLContext.get();
@@ -36,19 +38,21 @@ export default class HomePage extends Component {
 
   async componentDidMount() {
     let { date, location } = this.state;
+    location = location || HomePage.LOCATION_ISLANDWIDE;
+    
     const dateList = await WeatherRecord.getDateList();
 
     if (dateList.indexOf(date) === -1) {
       date = dateList[dateList.length - 1];
     }
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    const locationList = weatherRecordList
+    const locationList = [HomePage.LOCATION_ISLANDWIDE].concat(weatherRecordList
       .filter((d) => d.tempMin > 0)
       .map((d) => d.place)
-      .sort();
+      .sort());
 
     let locationRecord;
-    if (location) {
+    if (location !== HomePage.LOCATION_ISLANDWIDE) {
       locationRecord = await this.getLocationRecord(
         weatherRecordList,
         location
@@ -71,7 +75,7 @@ export default class HomePage extends Component {
   }
 
   async setLocation(location) {
-    if (!location) {
+    if (location === HomePage.LOCATION_ISLANDWIDE) {
       return this.setStateAndContext({ location, locationRecord: undefined });
     }
 
@@ -81,12 +85,25 @@ export default class HomePage extends Component {
   }
 
   renderWithData() {
-    const { location } = this.state;
+    const { location, locationList } = this.state;
 
-    if (location) {
-      return this.renderLocationView();
+    if (!locationList) {
+      return this.renderLoading();
     }
-    return this.renderCountryView();
+
+
+    return (
+      <Box>
+
+        <LocationSelector
+          locationList={locationList}
+          selectedLocation={location}
+          setLocation={this.setLocation.bind(this)}
+        />
+        {(location !== HomePage.LOCATION_ISLANDWIDE) ? this.renderLocationView() : this.renderCountryView()}
+      </Box>
+    )
+
   }
 
   renderLoading() {
@@ -98,25 +115,18 @@ export default class HomePage extends Component {
   }
 
   renderLocationView() {
-    const { location, locationRecord, locationList } = this.state;
-    if (!locationRecord) {
-      return this.renderLoading();
-    }
+    const { location, locationRecord,  } = this.state;
+
     return (
       <LocationView
         location={location}
         locationRecord={locationRecord}
-        setLocation={this.setLocation.bind(this)}
-        locationList={locationList}
       />
     );
   }
 
   renderCountryView() {
-    const { date, weatherRecordList } = this.state;
-    if (!weatherRecordList) {
-      return this.renderLoading();
-    }
+    const { date } = this.state;
 
     return (
       <CountryView

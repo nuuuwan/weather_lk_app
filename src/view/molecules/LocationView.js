@@ -1,18 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { MathX } from "../../nonview/base";
-import { LocationSelector } from "../../view/molecules";
+
 export default function LocationView({
-  location,
-  locationList,
-  setLocation,
+
   locationRecord,
 }) {
-  const n = locationRecord.length;
-  const firstRecord = locationRecord[0];
-  const lastRecord = locationRecord[n - 1];
-  const blurb = `${n} Records (${firstRecord.date} to ${lastRecord.date})`;
-
   const N_DISPLAY = 30;
   const dataset = locationRecord
     .filter(function (d) {
@@ -27,15 +20,9 @@ export default function LocationView({
   const HEIGHT_PER_ITEM = 20;
   return (
     <Box>
-      <Box>
-        <LocationSelector
-          locationList={locationList}
-          selectedLocation={location}
-          setLocation={setLocation}
-        />
-      </Box>
-      <Typography variant="caption">{blurb}</Typography>
-      <Typography variant="h5">Last {N_DISPLAY} Days</Typography>
+  
+
+      <Typography variant="h6">Last {N_DISPLAY} Days</Typography>
 
 
       <BarChart

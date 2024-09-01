@@ -8,7 +8,7 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
   const date = new Date(dateList[value]);
   return (
     <Box>
-      <Typography variant="h4">
+      <Typography variant="h6">
         {date.toLocaleDateString(undefined, {
           year: "numeric",
           month: "short",

@@ -21,14 +21,14 @@ export default function LocationSelector({
       sx={STYLE}
       value={selectedLocation}
       onChange={(e) => setLocation(e.target.value)}
-      renderValue={function (value, i) {
-        return <Typography variant="h4">{value}</Typography>;
+      renderValue={function (location) {
+        return <Typography variant="h3"> {location}</Typography>;
       }}
     >
-      {[].concat([null], locationList).map(function (location) {
+      {locationList.map(function (location) {
         return (
           <MenuItem key={location} value={location}>
-            {location ? location : "(Islandwide)"}
+            {location}
           </MenuItem>
         );
       })}
