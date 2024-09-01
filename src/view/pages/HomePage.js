@@ -4,27 +4,39 @@ import { WeatherRecord } from "../../nonview/core";
 
 import DayRainChart from "../molecules/DayRainChart";
 import { CustomDatePicker, DayTempChart } from "../molecules";
+import { URLContext } from "../../nonview/base";
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
+    const {date} = URLContext.get();
     this.state = {
       dateList: undefined,
-      date: undefined,
+      date,
       weatherRecordList: undefined,
     };
   }
 
+  setStateAndContext(newState) {
+    this.setState(newState);
+    const {date} = Object.assign({}, this.state, newState);
+    URLContext.set({date});
+  }
+
   async componentDidMount() {
+    let {date} = this.state;
     const dateList = await WeatherRecord.getDateList();
-    const date = dateList[dateList.length - 1];
+    
+    if (dateList.indexOf(date) === -1) {
+      date = dateList[dateList.length - 1];
+    }
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    this.setState({ dateList, date, weatherRecordList });
+    this.setStateAndContext({ dateList, date, weatherRecordList });
   }
 
   async setDate(date) {
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    this.setState({ date, weatherRecordList });
+    this.setStateAndContext({ date, weatherRecordList });
   }
 
   renderWithData() {
