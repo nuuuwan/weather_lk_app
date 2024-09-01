@@ -26,8 +26,8 @@ export default function CustomGuage({value, valueMax, label,subLabel, color}){
       fill: "#eee",
     },
   })}
-  />     <Typography variant="caption" color={color} sx={{fontSize: "50%"}}>{subLabel}</Typography>
-  <Typography variant="caption" color={color}>{label}</Typography>
+  />     <Typography variant="caption" color={color} sx={{fontSize: "80%"}}>{subLabel}</Typography>
+  <Typography variant="body1" color={color}>{label}</Typography>
       </Stack>
     )
   }
