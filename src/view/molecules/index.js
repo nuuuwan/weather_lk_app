@@ -3,7 +3,9 @@ import CountryView from "./CountryView";
 import CustomDatePicker from "./CustomDatePicker";
 import DayRainChart from "./DayRainChart";
 import DayTempChart from "./DayTempChart";
+import LocationRainChart from "./LocationRainChart";
 import LocationSelector from "./LocationSelector";
+import LocationTempChart from "./LocationTempChart";
 import LocationView from "./LocationView";
 import WeatherRecordView from "./WeatherRecordView";
 
@@ -12,7 +14,9 @@ export {
   CustomDatePicker,
   DayRainChart,
   DayTempChart,
+  LocationRainChart,
   LocationSelector,
+  LocationTempChart,
   LocationView,
   WeatherRecordView,
 };
