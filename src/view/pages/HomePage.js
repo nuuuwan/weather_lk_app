@@ -42,7 +42,10 @@ export default class HomePage extends Component {
       date = dateList[dateList.length - 1];
     }
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    const locationList = weatherRecordList.filter((d) => d.tempMin > 0).map((d) => d.place).sort();
+    const locationList = weatherRecordList
+      .filter((d) => d.tempMin > 0)
+      .map((d) => d.place)
+      .sort();
 
     let locationRecord;
     if (location) {
@@ -71,7 +74,7 @@ export default class HomePage extends Component {
     if (!location) {
       return this.setStateAndContext({ location, locationRecord: undefined });
     }
-    
+
     let { locationRecord, weatherRecordList } = this.state;
     locationRecord = await this.getLocationRecord(weatherRecordList, location);
     this.setStateAndContext({ location, locationRecord });
@@ -95,11 +98,18 @@ export default class HomePage extends Component {
   }
 
   renderLocationView() {
-    const { location, locationRecord , locationList} = this.state;
+    const { location, locationRecord, locationList } = this.state;
     if (!locationRecord) {
       return this.renderLoading();
     }
-    return <LocationView location={location} locationRecord={locationRecord} setLocation={this.setLocation.bind(this)} locationList={locationList} />;
+    return (
+      <LocationView
+        location={location}
+        locationRecord={locationRecord}
+        setLocation={this.setLocation.bind(this)}
+        locationList={locationList}
+      />
+    );
   }
 
   renderCountryView() {

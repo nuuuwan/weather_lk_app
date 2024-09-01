@@ -1,10 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { MathX } from "../../nonview/base";
-import {LocationSelector} from "../../view/molecules";
-export default function LocationView({ location, locationList, setLocation, locationRecord }) {
-
-
+import { LocationSelector } from "../../view/molecules";
+export default function LocationView({
+  location,
+  locationList,
+  setLocation,
+  locationRecord,
+}) {
   const n = locationRecord.length;
   const firstRecord = locationRecord[0];
   const lastRecord = locationRecord[n - 1];
@@ -22,8 +25,12 @@ export default function LocationView({ location, locationList, setLocation, loca
 
   return (
     <Box>
-        <Box>
-      <LocationSelector locationList={locationList} selectedLocation={location} setLocation={setLocation}/>
+      <Box>
+        <LocationSelector
+          locationList={locationList}
+          selectedLocation={location}
+          setLocation={setLocation}
+        />
       </Box>
       <Typography variant="caption">{blurb}</Typography>
 

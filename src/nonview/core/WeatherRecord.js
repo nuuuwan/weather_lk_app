@@ -1,5 +1,5 @@
 import { WWW } from "../../nonview/base";
-import {NORMALIZED_PLACE_IDX} from "../../nonview/constants"
+import { NORMALIZED_PLACE_IDX } from "../../nonview/constants";
 export default class WeatherRecord {
   static URL_BASE = "https://raw.githubusercontent.com/nuuuwan/weather_lk/data";
 
@@ -40,11 +40,10 @@ export default class WeatherRecord {
   }
 
   static normalizeLatLng(place, latLng) {
-    if (place === 'Katugastota') {
+    if (place === "Katugastota") {
       return { lat: 7.34, lng: 80.62 };
     }
     if (place === "Mattala") {
-
       return { lat: 6.31, lng: 81.11 };
     }
     return latLng;
@@ -63,9 +62,11 @@ export default class WeatherRecord {
 
     return rawData["weather_list"]
       .map(function (d) {
-        
         const place = WeatherRecord.normalizePlace(d["place"]);
-        const latLng = WeatherRecord.normalizeLatLng(place, { lat: d["lat"], lng: d["lng"] });
+        const latLng = WeatherRecord.normalizeLatLng(place, {
+          lat: d["lat"],
+          lng: d["lng"],
+        });
 
         return new WeatherRecord(
           place,
