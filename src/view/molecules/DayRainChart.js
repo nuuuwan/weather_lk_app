@@ -38,7 +38,6 @@ export default function DayRainChart({
     setLocation(dataset[dataIndex].place);
   };
 
-
   const n = dataset.length;
   return (
     <Box>

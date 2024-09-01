@@ -52,7 +52,6 @@ export default function LocationView({
         }}
         grid={{ vertical: true, horizontal: true }}
         layout="vertical"
-
       />
 
       <BarChart
@@ -70,7 +69,6 @@ export default function LocationView({
         }}
         grid={{ vertical: true, horizontal: true }}
         layout="vertical"
-
       />
     </Box>
   );
