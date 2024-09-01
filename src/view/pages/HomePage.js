@@ -88,9 +88,6 @@ export default class HomePage extends Component {
     };
     return (
       <Box sx={{ m: 2, p: 2 }}>
-        <Typography variant="h6" onClick={refresh} sx={{ cursor: "pointer" }}>
-          Weather
-        </Typography>
         {this.renderWithData()}
       </Box>
     );
