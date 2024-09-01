@@ -8,7 +8,7 @@ import { VERSION } from "../../nonview/constants";
 import { LocationView, CountryView, LocationSelector } from "../molecules";
 
 export default class HomePage extends Component {
-  static LOCATION_ISLANDWIDE = 'Islandwide';
+  static LOCATION_ISLANDWIDE = "Islandwide";
 
   constructor(props) {
     super(props);
@@ -39,17 +39,19 @@ export default class HomePage extends Component {
   async componentDidMount() {
     let { date, location } = this.state;
     location = location || HomePage.LOCATION_ISLANDWIDE;
-    
+
     const dateList = await WeatherRecord.getDateList();
 
     if (dateList.indexOf(date) === -1) {
       date = dateList[dateList.length - 1];
     }
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    const locationList = [HomePage.LOCATION_ISLANDWIDE].concat(weatherRecordList
-      .filter((d) => d.tempMin > 0)
-      .map((d) => d.place)
-      .sort());
+    const locationList = [HomePage.LOCATION_ISLANDWIDE].concat(
+      weatherRecordList
+        .filter((d) => d.tempMin > 0)
+        .map((d) => d.place)
+        .sort()
+    );
 
     let locationRecord;
     if (location !== HomePage.LOCATION_ISLANDWIDE) {
@@ -91,19 +93,18 @@ export default class HomePage extends Component {
       return this.renderLoading();
     }
 
-
     return (
       <Box>
-
         <LocationSelector
           locationList={locationList}
           selectedLocation={location}
           setLocation={this.setLocation.bind(this)}
         />
-        {(location !== HomePage.LOCATION_ISLANDWIDE) ? this.renderLocationView() : this.renderCountryView()}
+        {location !== HomePage.LOCATION_ISLANDWIDE
+          ? this.renderLocationView()
+          : this.renderCountryView()}
       </Box>
-    )
-
+    );
   }
 
   renderLoading() {
@@ -115,14 +116,9 @@ export default class HomePage extends Component {
   }
 
   renderLocationView() {
-    const { location, locationRecord,  } = this.state;
+    const { location, locationRecord } = this.state;
 
-    return (
-      <LocationView
-        location={location}
-        locationRecord={locationRecord}
-      />
-    );
+    return <LocationView location={location} locationRecord={locationRecord} />;
   }
 
   renderCountryView() {

@@ -30,9 +30,8 @@ export default class LocationRecord {
     if (this.rain < 5) {
       return "";
     }
-    return this.rain.toFixed(1) ;
+    return this.rain.toFixed(1);
   }
-
 
   static async listForLocation(location, latLng) {
     const latLngStr = `${latLng.lng.toFixed(2)}E-${latLng.lat.toFixed(2)}N`;
