@@ -1,39 +1,56 @@
 import { Component } from "react";
-import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress,  Stack, Typography } from "@mui/material";
 
 import { URLContext } from "../../nonview/base";
-import { WeatherRecord } from "../../nonview/core";
+import { WeatherRecord, LocationRecord } from "../../nonview/core";
 import { VERSION } from "../../nonview/constants";
 
-import DayRainChart from "../molecules/DayRainChart";
-import { CustomDatePicker, DayTempChart } from "../molecules";
+
+import { LocationView, CountryView } from "../molecules";
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    const { date } = URLContext.get();
+    const { date, location } = URLContext.get();
     this.state = {
       dateList: undefined,
       date,
+      location,
       weatherRecordList: undefined,
     };
   }
 
   setStateAndContext(newState) {
     this.setState(newState);
-    const { date } = Object.assign({}, this.state, newState);
-    URLContext.set({ date });
+    const { date, location } = Object.assign({}, this.state, newState);
+    URLContext.set({ date, location });
+  }
+
+  async getLocationRecord(weatherRecordList, location) {
+    const locationWeatherRecord = weatherRecordList.find(
+      (d) => d.place === location
+    );
+    const latLng = locationWeatherRecord.latLng;
+
+    return await LocationRecord.listForLocation(location, latLng);
   }
 
   async componentDidMount() {
-    let { date } = this.state;
+    let { date, location } = this.state;
     const dateList = await WeatherRecord.getDateList();
 
     if (dateList.indexOf(date) === -1) {
       date = dateList[dateList.length - 1];
     }
     const weatherRecordList = await WeatherRecord.listForDate(date);
-    this.setStateAndContext({ dateList, date, weatherRecordList });
+
+    let locationRecord;
+    if (location) {
+      locationRecord = await this.getLocationRecord(weatherRecordList, location);
+    }
+
+
+    this.setStateAndContext({ dateList, date, weatherRecordList, location, locationRecord });
   }
 
   async setDate(date) {
@@ -41,46 +58,48 @@ export default class HomePage extends Component {
     this.setStateAndContext({ date, weatherRecordList });
   }
 
+  async setLocation(location) {
+    let {locationRecord, weatherRecordList} = this.state;
+
+      locationRecord = await this.getLocationRecord(weatherRecordList, location);
+
+    this.setStateAndContext({ location, locationRecord });
+  }
+
   renderWithData() {
+    const {location} = this.state;
+
+    if (location) {
+      return this.renderLocationView();
+    }
+    return this.renderCountryView();
+  }
+
+renderLoading() {
+  return (
+    <Stack direction="row" gap={1} alignItems="center">
+      <CircularProgress />
+    </Stack>
+  );
+}
+
+  renderLocationView() {
+    const {location, locationRecord} = this.state;
+    if (!locationRecord) {
+      return this.renderLoading();
+    }
+    return <LocationView location={location} locationRecord={locationRecord}/>;
+  }
+  
+
+  renderCountryView() {
     const { date, weatherRecordList } = this.state;
     if (!weatherRecordList) {
-      return (
-        <Stack direction="row" gap={1} alignItems="center">
-          <CircularProgress />
-        </Stack>
-      );
+      return this.renderLoading();
     }
-    return (
-      <Box>
-        <CustomDatePicker
-          dateList={this.state.dateList}
-          currentDate={date}
-          setDate={this.setDate.bind(this)}
-        />
 
-        <Grid container>
+    return <CountryView date={date} {...this.state} setDate={this.setDate.bind(this)} setLocation={this.setLocation.bind(this)} />;
 
-        <Grid item xs={12} md={6}>
-            <DayRainChart
-              weatherRecordList={weatherRecordList}
-              showImportantOnly={true}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <DayTempChart weatherRecordList={weatherRecordList} />
-          </Grid>
-
-
-          <Grid item xs={12} md={6}>
-            <DayRainChart
-              weatherRecordList={weatherRecordList}
-              showImportantOnly={false}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-    );
   }
 
   render() {

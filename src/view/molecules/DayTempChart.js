@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { MathX } from "../../nonview/base";
 
-export default function DayTempChart({ date, weatherRecordList }) {
+export default function DayTempChart({ weatherRecordList, setLocation }) {
   const dataset = weatherRecordList
     .filter(function (weatherRecord) {
       return (
@@ -19,6 +19,11 @@ export default function DayTempChart({ date, weatherRecordList }) {
   const Q = 5;
   const min = Math.floor(MathX.min(dataset.map((x) => x.tempMin)) / Q) * Q;
   const max = Math.ceil(MathX.max(dataset.map((x) => x.tempMax)) / Q) * Q;
+
+  const onAxisClick  = function(e, v) {
+    const {axisValue} = v;
+    setLocation(axisValue);
+  }
 
   return (
     <Box>
@@ -41,6 +46,7 @@ export default function DayTempChart({ date, weatherRecordList }) {
         grid={{ vertical: true }}
         layout="horizontal"
         margin={{ left: 120 }}
+        onAxisClick={onAxisClick}
       />
     </Box>
   );
