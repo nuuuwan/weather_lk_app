@@ -47,7 +47,7 @@ export default class HomePage extends Component {
       return (
         <Stack direction="row" gap={1} alignItems="center">
           <CircularProgress />
-          <Typography variant="body2">Loading v{VERSION.DATETIME_STR}...</Typography>
+
         </Stack>
       );
     }
@@ -87,7 +87,9 @@ export default class HomePage extends Component {
       window.location.reload();
     };
     return (
-      <Box sx={{ m: 2, p: 2 }}>
+      <Box sx={{ m: 2, p: 2} }>
+                  <Typography variant="caption" sx={{cursor: "pointer", opacity: 0.2 }} onClick={refresh}>
+                    v{VERSION.DATETIME_STR}</Typography>
         {this.renderWithData()}
       </Box>
     );
