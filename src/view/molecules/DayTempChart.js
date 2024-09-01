@@ -25,6 +25,11 @@ export default function DayTempChart({ weatherRecordList, setLocation }) {
     setLocation(axisValue);
   };
 
+  const onItemClick = function (e, v) {
+    const { dataIndex } = v;
+    setLocation(dataset[dataIndex].place);
+  };
+
   return (
     <Box>
       <BarChart
@@ -47,6 +52,7 @@ export default function DayTempChart({ weatherRecordList, setLocation }) {
         layout="horizontal"
         margin={{ left: 120 }}
         onAxisClick={onAxisClick}
+        onItemClick={onItemClick}
       />
     </Box>
   );
