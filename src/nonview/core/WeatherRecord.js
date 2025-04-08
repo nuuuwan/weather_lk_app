@@ -1,7 +1,7 @@
-import { WWW } from "../../nonview/base";
-import { NORMALIZED_PLACE_IDX } from "../../nonview/constants";
+import { WWW } from '../../nonview/base';
+import { NORMALIZED_PLACE_IDX } from '../../nonview/constants';
 export default class WeatherRecord {
-  static URL_BASE = "https://raw.githubusercontent.com/nuuuwan/weather_lk/data";
+  static URL_BASE = 'https://raw.githubusercontent.com/nuuuwan/weather_lk/data';
 
   constructor(place, latLng, date, tempMinMax, rain) {
     this.place = place;
@@ -36,15 +36,15 @@ export default class WeatherRecord {
 
   // Normalizers
   static normalizePlace(place) {
-    place = place.replaceAll(" ", "-");
+    place = place.replaceAll(' ', '-');
     return NORMALIZED_PLACE_IDX[place] || place;
   }
 
   static normalizeLatLng(place, latLng) {
-    if (place === "Katugastota") {
+    if (place === 'Katugastota') {
       return { lat: 7.34, lng: 80.62 };
     }
-    if (place === "Mattala") {
+    if (place === 'Mattala') {
       return { lat: 6.31, lng: 81.11 };
     }
     return latLng;
@@ -52,7 +52,7 @@ export default class WeatherRecord {
 
   // Loaders
   static async getDateList() {
-    const dateList = await WWW.json(WeatherRecord.URL_BASE + "/date_list.json");
+    const dateList = await WWW.json(WeatherRecord.URL_BASE + '/date_list.json');
     return dateList.sort();
   }
 
@@ -61,20 +61,20 @@ export default class WeatherRecord {
 
     const rawData = await WWW.json(url);
 
-    return rawData["weather_list"]
+    return rawData['weather_list']
       .map(function (d) {
-        const place = WeatherRecord.normalizePlace(d["place"]);
+        const place = WeatherRecord.normalizePlace(d['place']);
         const latLng = WeatherRecord.normalizeLatLng(place, {
-          lat: d["lat"],
-          lng: d["lng"],
+          lat: d['lat'],
+          lng: d['lng'],
         });
 
         return new WeatherRecord(
           place,
           latLng,
           date,
-          { min: d["min_temp"], max: d["max_temp"] },
-          d["rain"],
+          { min: d['min_temp'], max: d['max_temp'] },
+          d['rain'],
         );
       })
       .sort(function (a, b) {

@@ -1,14 +1,14 @@
-import { Component } from "react";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Component } from 'react';
+import { Box, CircularProgress, Stack, Typography } from '@mui/material';
 
-import { URLContext } from "../../nonview/base";
-import { WeatherRecord, LocationRecord } from "../../nonview/core";
-import { VERSION } from "../../nonview/constants";
+import { URLContext } from '../../nonview/base';
+import { WeatherRecord, LocationRecord } from '../../nonview/core';
+import { VERSION } from '../../nonview/constants';
 
-import { LocationView, CountryView, LocationSelector } from "../molecules";
+import { LocationView, CountryView, LocationSelector } from '../molecules';
 
 export default class HomePage extends Component {
-  static LOCATION_ISLANDWIDE = "Islandwide";
+  static LOCATION_ISLANDWIDE = 'Islandwide';
 
   constructor(props) {
     super(props);
@@ -143,7 +143,7 @@ export default class HomePage extends Component {
       <Box sx={{ m: 2 }}>
         <Typography
           variant="caption"
-          sx={{ cursor: "pointer", opacity: 0.2 }}
+          sx={{ cursor: 'pointer', opacity: 0.2 }}
           onClick={refresh}
         >
           v{VERSION.DATETIME_STR}

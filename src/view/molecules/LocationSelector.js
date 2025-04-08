@@ -1,11 +1,11 @@
-import { Select, MenuItem, Typography } from "@mui/material";
+import { Select, MenuItem, Typography } from '@mui/material';
 
 const STYLE = {
-  border: "none",
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "none",
+  border: 'none',
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: 'none',
   },
-  "& .MuiSelect-select": {
+  '& .MuiSelect-select': {
     margin: 0,
     padding: 0,
   },

@@ -1,18 +1,18 @@
-import { Box, Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material';
 import {
   LocationRainChart,
   LocationTempChart,
   CustomGuage,
   LocationSummaryTable,
-} from '../../view/molecules'
+} from '../../view/molecules';
 
 function GuageBar({ dataset, N_DISPLAY }) {
-  const nDays1mm = dataset.filter((d) => d.rain > 1).length
-  const nDays25mm = dataset.filter((d) => d.rain > 25).length
+  const nDays1mm = dataset.filter((d) => d.rain > 1).length;
+  const nDays25mm = dataset.filter((d) => d.rain > 25).length;
 
-  const nDays24C = dataset.filter((d) => d.tempMin < 24).length
-  const nDays28C = dataset.filter((d) => d.tempMax > 28).length
-  const nDays32C = dataset.filter((d) => d.tempMax > 32).length
+  const nDays24C = dataset.filter((d) => d.tempMin < 24).length;
+  const nDays28C = dataset.filter((d) => d.tempMax > 28).length;
+  const nDays32C = dataset.filter((d) => d.tempMax > 32).length;
 
   return (
     <Stack spacing={2} direction="row" alignItems="center">
@@ -53,23 +53,23 @@ function GuageBar({ dataset, N_DISPLAY }) {
         subLabel="Max. Temp."
       />
     </Stack>
-  )
+  );
 }
 
 export default function LocationView({ locationRecord }) {
-  const N_DISPLAY = 30
+  const N_DISPLAY = 30;
   const datasetAll = locationRecord.filter(function (d) {
     return (
       d.tempMin !== null &&
       d.tempMax !== null &&
       d.rain !== null &&
       d.tempMin > 0
-    )
-  })
-  const dataset = datasetAll.slice(0, N_DISPLAY).reverse()
+    );
+  });
+  const dataset = datasetAll.slice(0, N_DISPLAY).reverse();
 
-  const HEIGHT_PER_ITEM = 22
-  const height = N_DISPLAY * HEIGHT_PER_ITEM
+  const HEIGHT_PER_ITEM = 22;
+  const height = N_DISPLAY * HEIGHT_PER_ITEM;
 
   return (
     <Box>
@@ -91,5 +91,5 @@ export default function LocationView({ locationRecord }) {
         </Grid>
       </Grid>
     </Box>
-  )
+  );
 }

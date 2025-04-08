@@ -1,8 +1,8 @@
-import { WWW } from "../../nonview/base";
+import { WWW } from '../../nonview/base';
 
 export default class LocationRecord {
   static URL_BASE =
-    "https://raw.githubusercontent.com/nuuuwan/weather_lk/data/data_by_place";
+    'https://raw.githubusercontent.com/nuuuwan/weather_lk/data/data_by_place';
   constructor(i, location, latLng, date, rain, tempMin, tempMax) {
     this.i = i;
     this.location = location;
@@ -28,7 +28,7 @@ export default class LocationRecord {
 
   get rainFormatted() {
     if (this.rain < 5) {
-      return "";
+      return '';
     }
     return this.rain.toFixed(1);
   }

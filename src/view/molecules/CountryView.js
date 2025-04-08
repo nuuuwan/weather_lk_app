@@ -1,10 +1,10 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid } from '@mui/material';
 
 import {
   CustomDatePicker,
   DayTempChart,
   DayRainChart,
-} from "../../view/molecules";
+} from '../../view/molecules';
 
 export default function CountryView({
   date,
