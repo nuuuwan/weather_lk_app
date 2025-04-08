@@ -90,40 +90,36 @@ export default function LocationSummaryTable({ dataset }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {summary
-              .filter(
-                (summaryItem) => summaryItem.month.substring(5, 7) === '03'
+            {summary.map(function (summaryItem) {
+              const {
+                month,
+                nDays,
+                meanRain,
+                meanTempMin,
+                meanTempMax,
+                meanTemp,
+                nDays1mm,
+                nDays25mm,
+                nDays24C,
+                nDays28C,
+                nDays32C,
+              } = summaryItem
+              return (
+                <TableRow key={month}>
+                  <TableCell>{month}</TableCell>
+                  <TableCell>{nDays}</TableCell>
+                  <TableCell>{meanRain.toFixed(1)}</TableCell>
+                  <TableCell>{meanTemp.toFixed(1)}</TableCell>
+                  <TableCell>{meanTempMin.toFixed(1)}</TableCell>
+                  <TableCell>{meanTempMax.toFixed(1)}</TableCell>
+                  <TableCell>{Format.percent(nDays1mm, nDays)}</TableCell>
+                  <TableCell>{Format.percent(nDays25mm, nDays)}</TableCell>
+                  <TableCell>{Format.percent(nDays24C, nDays)}</TableCell>
+                  <TableCell>{Format.percent(nDays28C, nDays)}</TableCell>
+                  <TableCell>{Format.percent(nDays32C, nDays)}</TableCell>
+                </TableRow>
               )
-              .map(function (summaryItem) {
-                const {
-                  month,
-                  nDays,
-                  meanRain,
-                  meanTempMin,
-                  meanTempMax,
-                  meanTemp,
-                  nDays1mm,
-                  nDays25mm,
-                  nDays24C,
-                  nDays28C,
-                  nDays32C,
-                } = summaryItem
-                return (
-                  <TableRow key={month}>
-                    <TableCell>{month}</TableCell>
-                    <TableCell>{nDays}</TableCell>
-                    <TableCell>{meanRain.toFixed(1)}</TableCell>
-                    <TableCell>{meanTemp.toFixed(1)}</TableCell>
-                    <TableCell>{meanTempMin.toFixed(1)}</TableCell>
-                    <TableCell>{meanTempMax.toFixed(1)}</TableCell>
-                    <TableCell>{Format.percent(nDays1mm, nDays)}</TableCell>
-                    <TableCell>{Format.percent(nDays25mm, nDays)}</TableCell>
-                    <TableCell>{Format.percent(nDays24C, nDays)}</TableCell>
-                    <TableCell>{Format.percent(nDays28C, nDays)}</TableCell>
-                    <TableCell>{Format.percent(nDays32C, nDays)}</TableCell>
-                  </TableRow>
-                )
-              })}
+            })}
           </TableBody>
         </Table>
       </TableContainer>
