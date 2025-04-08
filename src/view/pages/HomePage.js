@@ -29,7 +29,7 @@ export default class HomePage extends Component {
 
   async getLocationRecord(weatherRecordList, location) {
     const locationWeatherRecord = weatherRecordList.find(
-      (d) => d.place === location
+      (d) => d.place === location,
     );
     const latLng = locationWeatherRecord.latLng;
 
@@ -50,14 +50,14 @@ export default class HomePage extends Component {
       weatherRecordList
         .filter((d) => d.tempMin > 0)
         .map((d) => d.place)
-        .sort()
+        .sort(),
     );
 
     let locationRecord;
     if (location !== HomePage.LOCATION_ISLANDWIDE) {
       locationRecord = await this.getLocationRecord(
         weatherRecordList,
-        location
+        location,
       );
     }
 

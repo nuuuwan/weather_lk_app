@@ -49,7 +49,7 @@ export default class LocationRecord {
           d.date,
           d.rain,
           d.min_temp,
-          d.max_temp
+          d.max_temp,
         );
       })
       .sort(function (a, b) {

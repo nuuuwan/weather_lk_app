@@ -7,6 +7,7 @@ import DayTempChart from "./DayTempChart";
 import LocationRainChart from "./LocationRainChart";
 import LocationSelector from "./LocationSelector";
 import LocationTempChart from "./LocationTempChart";
+import LocationSummaryTable from "./LocationSummaryTable";
 import LocationView from "./LocationView";
 import WeatherRecordView from "./WeatherRecordView";
 
@@ -19,6 +20,7 @@ export {
   LocationRainChart,
   LocationSelector,
   LocationTempChart,
+  LocationSummaryTable,
   LocationView,
   WeatherRecordView,
 };

@@ -25,7 +25,7 @@ export default function DayRainChart({
   const dataset = getDataset(weatherRecordList, showImportantOnly).sort(
     function (a, b) {
       return b.rain - a.rain;
-    }
+    },
   );
 
   const onAxisClick = function (e, v) {

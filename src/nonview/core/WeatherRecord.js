@@ -74,7 +74,7 @@ export default class WeatherRecord {
           latLng,
           date,
           { min: d["min_temp"], max: d["max_temp"] },
-          d["rain"]
+          d["rain"],
         );
       })
       .sort(function (a, b) {
