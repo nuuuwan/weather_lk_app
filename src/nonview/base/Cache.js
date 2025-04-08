@@ -5,14 +5,14 @@ export default class Cache {
       return JSON.parse(hotItem);
     }
 
-    console.debug('❄️⌛', 'Cache.get', 'cold', cacheKey);
+    console.debug("❄️⌛", "Cache.get", "cold", cacheKey);
     const coldItem = await asyncFallback();
     try {
       const coldItemJSON = JSON.stringify(coldItem);
       localStorage.setItem(cacheKey, coldItemJSON);
     } catch (QuotaExceededError) {
       localStorage.clear();
-      console.warn('⚠️ localStorage cleared!');
+      console.warn("⚠️ localStorage cleared!");
     }
     return coldItem;
   }
@@ -23,7 +23,7 @@ export default class Cache {
       return JSON.parse(hotItem);
     }
 
-    console.debug('⌛', 'Cache.getSync', 'cold', cacheKey);
+    console.debug("⌛", "Cache.getSync", "cold", cacheKey);
     const coldItem = fallback();
     try {
       localStorage.setItem(cacheKey, JSON.stringify(coldItem));

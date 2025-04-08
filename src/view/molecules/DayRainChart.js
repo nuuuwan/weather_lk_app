@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { BarChart } from '@mui/x-charts/BarChart';
+import { Box } from "@mui/material";
+import { BarChart } from "@mui/x-charts/BarChart";
 
 function isImportant(weatherRecord) {
   return (
@@ -43,12 +43,12 @@ export default function DayRainChart({
     <Box>
       <BarChart
         dataset={dataset}
-        series={[{ dataKey: 'rain', color: '#0088ff88' }]}
-        yAxis={[{ dataKey: 'place', scaleType: 'band' }]}
-        xAxis={[{ label: 'Rainfall (mm)' }]}
+        series={[{ dataKey: "rain", color: "#0088ff88" }]}
+        yAxis={[{ dataKey: "place", scaleType: "band" }]}
+        xAxis={[{ label: "Rainfall (mm)" }]}
         barLabel={(item) => {
           if (item.value < 5) {
-            return '';
+            return "";
           }
           return item.value;
         }}

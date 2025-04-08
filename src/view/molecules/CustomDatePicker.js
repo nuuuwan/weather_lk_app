@@ -1,5 +1,5 @@
-import { Slider, Typography, Box } from '@mui/material';
-import React from 'react';
+import { Slider, Typography, Box } from "@mui/material";
+import React from "react";
 
 export default function CustomDatePicker({ dateList, currentDate, setDate }) {
   const valueInit = dateList.indexOf(currentDate);
@@ -10,10 +10,10 @@ export default function CustomDatePicker({ dateList, currentDate, setDate }) {
     <Box>
       <Typography variant="h6">
         {date.toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          weekday: 'short',
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          weekday: "short",
         })}
       </Typography>
       <Slider

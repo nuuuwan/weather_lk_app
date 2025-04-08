@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { MathX } from '../../nonview/base';
+import { Box } from "@mui/material";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { MathX } from "../../nonview/base";
 
 export default function DayTempChart({ weatherRecordList, setLocation }) {
   const dataset = weatherRecordList
@@ -35,18 +35,18 @@ export default function DayTempChart({ weatherRecordList, setLocation }) {
       <BarChart
         dataset={dataset}
         series={[
-          { dataKey: 'tempMin', stack: 'tempMin', color: 'white' },
-          { dataKey: 'tempSpan', stack: 'tempMin', color: 'red' },
+          { dataKey: "tempMin", stack: "tempMin", color: "white" },
+          { dataKey: "tempSpan", stack: "tempMin", color: "red" },
         ]}
         height={n * 24}
-        yAxis={[{ dataKey: 'place', scaleType: 'band' }]}
-        xAxis={[{ label: 'Temperature (°C)', min, max }]}
+        yAxis={[{ dataKey: "place", scaleType: "band" }]}
+        xAxis={[{ label: "Temperature (°C)", min, max }]}
         barLabel={(item) => {
-          if (item.seriesId === 'auto-generated-id-1') {
+          if (item.seriesId === "auto-generated-id-1") {
             const datum = dataset[item.dataIndex];
             return datum.tempRangeFormatted;
           }
-          return '';
+          return "";
         }}
         grid={{ vertical: true }}
         layout="horizontal"

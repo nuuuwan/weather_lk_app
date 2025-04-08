@@ -6,8 +6,8 @@ import {
   TableRow,
   TableCell,
   TableHead,
-} from '@mui/material';
-import { MathX, Format } from '../../nonview/base';
+} from "@mui/material";
+import { MathX, Format } from "../../nonview/base";
 
 function getSummary(dataset) {
   const monthToDatasetList = dataset.reduce(function (

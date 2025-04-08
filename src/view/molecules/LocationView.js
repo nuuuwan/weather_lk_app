@@ -1,10 +1,10 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import {
   LocationRainChart,
   LocationTempChart,
   CustomGuage,
   LocationSummaryTable,
-} from '../../view/molecules';
+} from "../../view/molecules";
 
 function GuageBar({ dataset, N_DISPLAY }) {
   const nDays1mm = dataset.filter((d) => d.rain > 1).length;
