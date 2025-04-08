@@ -1,6 +1,6 @@
-import { Typography, Stack } from '@mui/material';
-import { Gauge, gaugeClasses } from '@mui/x-charts';
-import { STYLE } from '../../nonview/constants';
+import { Typography, Stack } from "@mui/material";
+import { Gauge, gaugeClasses } from "@mui/x-charts";
+import { STYLE } from "../../nonview/constants";
 export default function CustomGuage({
   value,
   valueMax,
@@ -21,12 +21,13 @@ export default function CustomGuage({
         valueMax={valueMax}
         text={function ({ value, valueMax }) {
           return (value / valueMax).toLocaleString(undefined, {
-            style: 'percent',
+            style: "percent",
             maximumFractionDigits: 0,
           });
         }}
         height={60}
         cornerRadius="60%"
+        // eslint-disable-next-line no-unused-vars
         sx={(theme) => ({
           [`& .${gaugeClasses.valueText}`]: {
             fontSize: STYLE.FONT.SIZE,
@@ -36,11 +37,11 @@ export default function CustomGuage({
             fill: color,
           },
           [`& .${gaugeClasses.referenceArc}`]: {
-            fill: '#eee',
+            fill: "#eee",
           },
         })}
-      />{' '}
-      <Typography variant="caption" color={color} sx={{ fontSize: '80%' }}>
+      />{" "}
+      <Typography variant="caption" color={color} sx={{ fontSize: "80%" }}>
         {subLabel}
       </Typography>
       <Typography variant="body1" color={color}>
