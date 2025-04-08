@@ -78,15 +78,15 @@ export default function LocationSummaryTable({ dataset }) {
             <TableRow>
               <TableCell>Month</TableCell>
               <TableCell>Days with Data</TableCell>
-              <TableCell>Rain (mm)</TableCell>
+              <TableCell>Avg. Rain (mm)</TableCell>
               <TableCell>Avg. Temp (°C)</TableCell>
               <TableCell>Avg. Min Temp (°C)</TableCell>
               <TableCell>Avg. Max Temp (°C)</TableCell>
-              <TableCell>Rain&gt;1mm</TableCell>
-              <TableCell>Rain&gt;25mm</TableCell>
-              <TableCell>Min Temp&lt;24°C</TableCell>
-              <TableCell>Max Temp&gt;28°C</TableCell>
-              <TableCell>Max Temp&gt;32°C</TableCell>
+              <TableCell>Days with Rain&gt;1mm</TableCell>
+              <TableCell>Days with Rain&gt;25mm</TableCell>
+              <TableCell>Days with Min Temp&lt;24°C</TableCell>
+              <TableCell>Days with Max Temp&gt;28°C</TableCell>
+              <TableCell>Days with Max Temp&gt;32°C</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
